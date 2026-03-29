@@ -18,7 +18,8 @@ export default function Contact() {
     setError(null)
 
     try {
-      const res = await fetch('/api/send-email', {
+      // Reemplaza 'TU_FORM_ID' con tu ID de Formspree
+      const res = await fetch('https://formspree.io/f/xqegpwej', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(form),
