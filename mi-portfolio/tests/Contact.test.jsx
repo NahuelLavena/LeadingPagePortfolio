@@ -23,6 +23,11 @@ describe('Contact', () => {
   })
 
   it('muestra mensaje de éxito al enviar', async () => {
+    vi.spyOn(global, 'fetch').mockResolvedValueOnce({
+      ok: true,
+      json: () => Promise.resolve({ success: true }),
+    })
+
     render(<Contact />)
     
     fireEvent.change(screen.getByLabelText('Nombre'), { target: { value: 'Juan' } })
@@ -35,6 +40,8 @@ describe('Contact', () => {
     await waitFor(() => {
       expect(screen.getByText('¡Mensaje enviado!')).toBeInTheDocument()
     })
+
+    global.fetch.mockRestore()
   })
 
   it('renderiza links de contacto', () => {

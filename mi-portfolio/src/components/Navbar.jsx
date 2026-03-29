@@ -37,7 +37,7 @@ export default function Navbar() {
         <nav className={`navbar__links ${mobileMenuOpen ? 'navbar__links--open' : ''}`}>
           <a href="#proyectos" onClick={() => setMobileMenuOpen(false)}>Proyectos</a>
           <a href="#contacto" onClick={() => setMobileMenuOpen(false)}>Contacto</a>
-          <a href="https://github.com/tuusuario" target="_blank" rel="noopener noreferrer" className="navbar__cta">
+          <a href="https://github.com/NahuelLavena" target="_blank" rel="noopener noreferrer" className="navbar__cta">
             GitHub ↗
           </a>
           <button 
