@@ -116,3 +116,18 @@
   font-size: 0.9rem;
   margin-bottom: 0.5rem;
 }
+
+@media (max-width: 768px) {
+  .contact__inner {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .contact__submit {
+    width: 100%;
+  }
+
+  .contact__socials {
+    margin-top: 1rem;
+  }
+}

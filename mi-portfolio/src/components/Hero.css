@@ -136,3 +136,31 @@
   height: 36px;
   background: var(--color-border);
 }
+
+@media (max-width: 768px) {
+  .hero {
+    padding-top: 7rem;
+  }
+
+  .hero__title {
+    font-size: clamp(2rem, 8vw, 2.8rem);
+  }
+
+  .hero__desc {
+    font-size: 1rem;
+  }
+
+  .hero__stats {
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .hero__stat-divider {
+    display: none;
+  }
+
+  .hero__stat {
+    flex: 1 1 calc(50% - 0.5rem);
+    min-width: 100px;
+  }
+}
