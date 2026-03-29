@@ -2,21 +2,19 @@ import { createContext, useState, useEffect } from 'react'
 
 export const ThemeContext = createContext()
 
+function getInitialTheme() {
+  if (typeof window === 'undefined') return false
+  
+  const saved = localStorage.getItem('theme')
+  if (saved) {
+    return saved === 'dark'
+  }
+  return window.matchMedia('(prefers-color-scheme: dark)').matches
+}
+
 export function ThemeProvider({ children }) {
-  const [isDark, setIsDark] = useState(false)
+  const [isDark, setIsDark] = useState(getInitialTheme)
 
-  // Verificar preferencia guardada o del sistema
-  useEffect(() => {
-    const saved = localStorage.getItem('theme')
-    if (saved) {
-      setIsDark(saved === 'dark')
-    } else {
-      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches
-      setIsDark(prefersDark)
-    }
-  }, [])
-
-  // Aplicar tema al documento
   useEffect(() => {
     if (isDark) {
       document.documentElement.classList.add('dark')
