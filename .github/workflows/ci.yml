@@ -22,14 +22,12 @@ jobs:
           cache-dependency-path: mi-portfolio/package-lock.json
 
       - name: Install dependencies
-        run: |
-          cd mi-portfolio
-          npm ci
+        working-directory: ./mi-portfolio
+        run: npm ci
 
       - name: Run ESLint
-        run: |
-          cd mi-portfolio
-          npm run lint
+        working-directory: ./mi-portfolio
+        run: npm run lint
 
   test:
     name: Test
@@ -46,14 +44,12 @@ jobs:
           cache-dependency-path: mi-portfolio/package-lock.json
 
       - name: Install dependencies
-        run: |
-          cd mi-portfolio
-          npm ci
+        working-directory: ./mi-portfolio
+        run: npm ci
 
       - name: Run tests
-        run: |
-          cd mi-portfolio
-          npm run test:run
+        working-directory: ./mi-portfolio
+        run: npm run test:run
 
   build:
     name: Build
@@ -70,11 +66,9 @@ jobs:
           cache-dependency-path: mi-portfolio/package-lock.json
 
       - name: Install dependencies
-        run: |
-          cd mi-portfolio
-          npm ci
+        working-directory: ./mi-portfolio
+        run: npm ci
 
       - name: Build project
-        run: |
-          cd mi-portfolio
-          npm run build
+        working-directory: ./mi-portfolio
+        run: npm run build
