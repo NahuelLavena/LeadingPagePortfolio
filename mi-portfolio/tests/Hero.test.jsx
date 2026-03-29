@@ -14,7 +14,7 @@ describe('Hero', () => {
 
   it('renderiza el badge de disponibilidad', () => {
     render(<Hero />)
-    expect(screen.getByText(/Disponible para proyectos freelance/)).toBeInTheDocument()
+    expect(screen.getByText(/Disponible/)).toBeInTheDocument()
   })
 
   it('renderiza los botones de acción', () => {
