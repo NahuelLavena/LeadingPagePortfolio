@@ -52,11 +52,11 @@ function ProjectCard({ project, index }) {
 
 export default function Projects() {
   return (
-    <section className="section" id="proyectos">
+    <section className="section" id="proyectos" aria-labelledby="projects-title">
       <div className="container">
         {/* Encabezado de sección */}
         <div className="projects__header">
-          <p className="section-label">Trabajos</p>
+          <p className="section-label" id="projects-title">Trabajos</p>
           <h2 className="section-title">Proyectos seleccionados</h2>
           <p className="section-subtitle">
             Una muestra de lo que construí usando React y el stack moderno de JavaScript.

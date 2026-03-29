@@ -1,22 +1,40 @@
 import { useState } from 'react'
-import { Mail, Link, GitBranch, Send } from 'lucide-react'
+import { Mail, Link, GitBranch, Send, Loader2 } from 'lucide-react'
 import './Contact.css'
 
 export default function Contact() {
-  // Estado del formulario
   const [form, setForm] = useState({ nombre: '', email: '', mensaje: '' })
   const [sent, setSent] = useState(false)
+  const [loading, setLoading] = useState(false)
+  const [error, setError] = useState(null)
 
   const handleChange = e => {
     setForm({ ...form, [e.target.name]: e.target.value })
   }
 
-  // Por ahora solo simula el envío. Podés conectar EmailJS o Formspree.
-  const handleSubmit = e => {
+  const handleSubmit = async e => {
     e.preventDefault()
-    console.log('Formulario enviado:', form)
-    setSent(true)
-    setForm({ nombre: '', email: '', mensaje: '' })
+    setLoading(true)
+    setError(null)
+
+    try {
+      const res = await fetch('/api/send-email', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(form),
+      })
+
+      if (!res.ok) {
+        throw new Error('Error al enviar el mensaje')
+      }
+
+      setSent(true)
+      setForm({ nombre: '', email: '', mensaje: '' })
+    } catch (err) {
+      setError(err.message)
+    } finally {
+      setLoading(false)
+    }
   }
 
   return (
@@ -38,8 +56,10 @@ export default function Contact() {
               <Mail size={18} />
               tu@email.com
             </a>
+
+            {/*Link redes */}
             <a
-              href="https://linkedin.com/in/tuusuario"
+              href="https://www.linkedin.com/in/nahuel-lavena-b11a08216/"
               target="_blank"
               rel="noopener noreferrer"
               className="contact__social-link"
@@ -48,7 +68,7 @@ export default function Contact() {
               LinkedIn
             </a>
             <a
-              href="https://github.com/tuusuario"
+              href="https://github.com/NahuelLavena"
               target="_blank"
               rel="noopener noreferrer"
               className="contact__social-link"
@@ -62,7 +82,6 @@ export default function Contact() {
         {/* Columna derecha: formulario */}
         <div className="contact__form-wrap fade-up fade-up-2">
           {sent ? (
-            // Mensaje de éxito
             <div className="contact__success">
               <span className="contact__success-icon">✓</span>
               <h3>¡Mensaje enviado!</h3>
@@ -73,6 +92,11 @@ export default function Contact() {
             </div>
           ) : (
             <form className="contact__form" onSubmit={handleSubmit}>
+              {error && (
+                <div className="contact__error" role="alert">
+                  {error}
+                </div>
+              )}
               <div className="form-group">
                 <label htmlFor="nombre">Nombre</label>
                 <input
@@ -83,6 +107,7 @@ export default function Contact() {
                   onChange={handleChange}
                   placeholder="Tu nombre"
                   required
+                  disabled={loading}
                 />
               </div>
               <div className="form-group">
@@ -95,6 +120,7 @@ export default function Contact() {
                   onChange={handleChange}
                   placeholder="tu@email.com"
                   required
+                  disabled={loading}
                 />
               </div>
               <div className="form-group">
@@ -107,11 +133,21 @@ export default function Contact() {
                   placeholder="Contame sobre tu proyecto..."
                   rows={5}
                   required
+                  disabled={loading}
                 />
               </div>
-              <button type="submit" className="btn btn--primary contact__submit">
-                <Send size={16} />
-                Enviar mensaje
+              <button type="submit" className="btn btn--primary contact__submit" disabled={loading}>
+                {loading ? (
+                  <>
+                    <Loader2 size={16} className="spin" />
+                    Enviando...
+                  </>
+                ) : (
+                  <>
+                    <Send size={16} />
+                    Enviar mensaje
+                  </>
+                )}
               </button>
             </form>
           )}
