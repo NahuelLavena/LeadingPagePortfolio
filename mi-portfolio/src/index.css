@@ -57,6 +57,16 @@ body {
   padding: 7rem 0;
 }
 
+@media (max-width: 768px) {
+  .container {
+    padding: 0 1.25rem;
+  }
+
+  .section {
+    padding: 4rem 0;
+  }
+}
+
 .section-label {
   font-family: var(--font-display);
   font-size: 0.75rem;
