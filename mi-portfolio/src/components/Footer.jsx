@@ -5,7 +5,7 @@ export default function Footer() {
     <footer className="footer">
       <div className="container footer__inner">
         <p className="footer__copy">
-          © {new Date().getFullYear()} Tu Nombre — Construido con React + Vite
+          © {new Date().getFullYear()} Nahuel Lavena — Construido con React + Vite
         </p>
         <p className="footer__made">
           Hecho con ♥ en Buenos Aires
