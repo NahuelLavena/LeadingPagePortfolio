@@ -13,7 +13,7 @@ export default function Hero() {
 
         {/* Título principal */}
         <h1 className="hero__title fade-up fade-up-2">
-          Full Stack Developer<br />
+          Software Developer<br />
           <span className="hero__title-accent">que construye</span><br />
           experiencias reales.
         </h1>
@@ -47,7 +47,7 @@ export default function Hero() {
         <dl className="hero__stats fade-up fade-up-4">
           <div className="hero__stat">
             <dt className="hero__stat-label">Proyectos</dt>
-            <dd className="hero__stat-num">+5</dd>
+            <dd className="hero__stat-num">+3</dd>
           </div>
           <div className="hero__stat-divider" aria-hidden="true" />
           <div className="hero__stat">
@@ -57,7 +57,7 @@ export default function Hero() {
           <div className="hero__stat-divider" aria-hidden="true" />
           <div className="hero__stat">
             <dt className="hero__stat-label">Stack principal</dt>
-            <dd className="hero__stat-num">Java</dd>
+            <dd className="hero__stat-num">Java/c++</dd>
           </div>
         </dl>
 
